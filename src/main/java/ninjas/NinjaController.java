@@ -1,15 +1,40 @@
 package ninjas;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/ninjas")
 public class NinjaController {
 
-    @GetMapping("/boasvindas")
-    public String boasVindas(){
-        return "Essa é minha primeira mensagem";
+    private final NinjaService ninjaService;
+
+    // Injeção de dependência do NinjaService
+    public NinjaController(NinjaService ninjaService) {
+        this.ninjaService = ninjaService;
+    }
+
+    // 1. Endpoint para criar um novo ninja (POST /ninjas)
+    @PostMapping
+    public NinjaModel criarNinja(@RequestBody NinjaModel ninja) {
+        return ninjaService.criarNinja(ninja);
+    }
+
+    // 2. Endpoint para listar todos os ninjas (GET /ninjas)
+    @GetMapping
+    public List<NinjaModel> listarNinjas() {
+        return ninjaService.listarNinjas();
+    }
+
+    // 3. Endpoint para buscar ninja por ID (GET /ninjas/{id})
+    @GetMapping("/{id}")
+    public NinjaModel buscarNinjaPorId(@PathVariable Long id) {
+        return ninjaService.buscarNinjaPorId(id);
+    }
+
+    // 4. Endpoint para deletar ninja por ID (DELETE /ninjas/{id})
+    @DeleteMapping("/{id}")
+    public void deletarNinjaPorId(@PathVariable Long id) {
+        ninjaService.deletarNinjaPorId(id);
     }
 }
