@@ -1,6 +1,9 @@
-package dev.jef.CadastroDeNinjas;
+package Ninjas;
 
+import Missoes.MissoesModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 //Entity ele transforma uma classe em uma entidade do banco de dados
 // JPA = java persistence API
@@ -8,12 +11,17 @@ import jakarta.persistence.*;
 @Table(name = "tb_cadastro")
 public class NinjaModel {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-       private  long id;
+       @Id
+       @GeneratedValue(strategy = GenerationType.IDENTITY)
+       private  Long id;
        private String nome;
        private String email;
        private int idade;
+
+       //@ManyToOne Um ninja pode fazer apenas uma missão por vez
+       @ManyToOne
+       @JoinColumn(nome = missoes_id) //foreing key ou chave estrangeira.
+       private MissoesModel missoes;
 
     // 1. Construtor vazio (Exigido pelo JPA/Hibernate)
     public NinjaModel(){
