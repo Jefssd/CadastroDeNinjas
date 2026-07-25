@@ -1,4 +1,4 @@
-package ninjas;
+package dev.jef.CadastroDeNinjas.ninjas;
 
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

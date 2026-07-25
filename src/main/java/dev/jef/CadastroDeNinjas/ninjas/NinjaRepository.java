@@ -1,4 +1,4 @@
-package ninjas;
+package dev.jef.CadastroDeNinjas.ninjas;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

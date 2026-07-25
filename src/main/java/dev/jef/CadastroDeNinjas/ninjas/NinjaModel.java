@@ -1,6 +1,6 @@
-package ninjas;
+package dev.jef.CadastroDeNinjas.ninjas;
 
-import missoes.MissoesModel;
+import dev.jef.CadastroDeNinjas.missoes.MissoesModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +24,7 @@ public class NinjaModel {
 
        //@ManyToOne Um ninja pode fazer apenas uma missão por vez
        @ManyToOne
-       @JoinColumn(nome = missoes_id) //foreing key ou chave estrangeira.
+       @JoinColumn(name = "missoes_id") //foreing key ou chave estrangeira.
        private MissoesModel missoes;
 
 
