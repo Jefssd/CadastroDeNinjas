@@ -2,7 +2,11 @@ package dev.jef.CadastroDeNinjas.ninjas;
 
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
+/*
+ * CONTROLLER
+ * Porta de entrada da API (Gerenciador de Rotas/Endpoints).
+ * Recebe as requisições HTTP, repassa para o Service e retorna as respostas em JSON.
+ */
 @RestController
 @RequestMapping("/ninjas")
 public class NinjaController {

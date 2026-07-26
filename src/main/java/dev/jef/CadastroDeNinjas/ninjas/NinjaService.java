@@ -3,7 +3,11 @@ package dev.jef.CadastroDeNinjas.ninjas;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
-
+/*
+ * SERVICE
+ * Camada de regra de negócio da aplicação.
+ * Processa as informações, aplica as regras necessárias e chama o Repository.
+ */
 @Service
 public class NinjaService {
 

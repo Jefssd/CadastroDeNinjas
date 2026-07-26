@@ -1,5 +1,9 @@
 package dev.jef.CadastroDeNinjas.ninjas;
-
+/*
+ * MODEL (Entity)
+ * Representa a tabela do banco de dados.
+ * Define a estrutura dos dados (atributos/colunas) e seus relacionamentos.
+ */
 import dev.jef.CadastroDeNinjas.missoes.MissoesModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,47 +30,6 @@ public class NinjaModel {
        @ManyToOne
        @JoinColumn(name = "missoes_id") //foreing key ou chave estrangeira.
        private MissoesModel missoes;
-
-
-    /*
-    // 1. Construtor vazio (Exigido pelo JPA/Hibernate)
-    public NinjaModel(){
-
-    }
-
-    // 2. Construtor com parâmetros para facilitar a criação de novos objetos
-
-    public NinjaModel(String nome, String email, int idade){
-        this.nome =  nome;
-        this.email = email;
-        this.idade = idade;
-    }
-
-    // --- Getters e Setters ---
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome(){
-        return nome;
-    }
-
-    public void setNome(){
-        this.nome =  nome;
-    }
-
-    public String getEmail(){
-        return email;
-    }
-    public void setEmail(){
-        this.email =  email;
-    }
-    */
 
 
 }
