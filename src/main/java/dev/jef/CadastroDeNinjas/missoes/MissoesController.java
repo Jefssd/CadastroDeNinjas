@@ -2,6 +2,7 @@ package dev.jef.CadastroDeNinjas.missoes;
 
 import dev.jef.CadastroDeNinjas.ninjas.NinjaModel;
 import dev.jef.CadastroDeNinjas.ninjas.NinjaService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class MissoesController {
 
     // 1. Endpoint para criar uma nova missao (POST /missoes)
     @PostMapping
-    public MissoesModel criarMissao(@RequestBody MissoesModel missao) {
+    public MissoesModel criarMissao(@Valid @RequestBody MissoesModel missao) {
         return missoesService.criarMissao(missao);
     }
 
@@ -39,5 +40,10 @@ public class MissoesController {
     @DeleteMapping("/{id}")
     public void deletarMissaoPorId(@PathVariable Long id) {
         missoesService.deletarMissaoPorId(id);
+    }
+
+    @PutMapping("/{id}")
+    public MissoesModel atualizarMissao(@PathVariable Long id, @Valid @RequestBody MissoesModel ninja) {
+        return missoesService.atualizarMissao(id, ninja);
     }
 }

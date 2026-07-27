@@ -1,6 +1,7 @@
 package dev.jef.CadastroDeNinjas.exceptions;
 
 import exceptions.ErroResposta;
+import exceptions.MissaoNaoEncontradaException;
 import exceptions.NinjaNaoEncontradoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,5 +40,11 @@ public class GlobalExceptionHandler {
                 "Erro interno no servidor: " + ex.getMessage()
         );
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erro);
+    }
+
+    @ExceptionHandler(MissaoNaoEncontradaException.class)
+    public ResponseEntity<ErroResposta> handleMissaoNaoEncontrada(MissaoNaoEncontradaException ex) {
+        ErroResposta erro = new ErroResposta(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro);
     }
 }
