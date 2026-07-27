@@ -1,5 +1,6 @@
 package dev.jef.CadastroDeNinjas.ninjas;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 /*
@@ -20,7 +21,7 @@ public class NinjaController {
 
     // 1. Endpoint para criar um novo ninja (POST /ninjas)
     @PostMapping
-    public NinjaModel criarNinja(@RequestBody NinjaModel ninja) {
+    public NinjaModel criarNinja(@Valid @RequestBody NinjaModel ninja) {
         return ninjaService.criarNinja(ninja);
     }
 
@@ -40,5 +41,10 @@ public class NinjaController {
     @DeleteMapping("/{id}")
     public void deletarNinjaPorId(@PathVariable Long id) {
         ninjaService.deletarNinjaPorId(id);
+    }
+
+    @PutMapping("/{id}")
+    public NinjaModel atualizarNinja(@PathVariable Long id, @Valid @RequestBody NinjaModel ninja) {
+        return ninjaService.atualizarNinja(id, ninja);
     }
 }

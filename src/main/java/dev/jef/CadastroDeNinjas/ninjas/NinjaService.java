@@ -1,7 +1,9 @@
 package dev.jef.CadastroDeNinjas.ninjas;
 
+import exceptions.NinjaNaoEncontradoException;
 import org.springframework.stereotype.Service;
 import java.util.List;
+
 import java.util.Optional;
 /*
  * SERVICE
@@ -24,8 +26,8 @@ public class NinjaService {
 
     // 2. Buscar um ninja por ID
     public NinjaModel buscarNinjaPorId(Long id) {
-        Optional<NinjaModel> ninja = ninjaRepository.findById(id);
-        return ninja.orElse(null); // Retorna o ninja se achar, ou null se não encontrar
+        return ninjaRepository.findById(id)
+                .orElseThrow(() -> new NinjaNaoEncontradoException(id));
     }
 
     // 3. Criar / Salvar um novo ninja
@@ -35,7 +37,21 @@ public class NinjaService {
 
     // 4. Deletar um ninja por ID
     public void deletarNinjaPorId(Long id) {
+        if (!ninjaRepository.existsById(id)) {
+            throw new NinjaNaoEncontradoException(id);
+        }
         ninjaRepository.deleteById(id);
+    }
+
+    // Atualizar / Alterar dados do ninja
+    public NinjaModel atualizarNinja(Long id, NinjaModel ninjaAtualizado) {
+        NinjaModel ninjaExistente = ninjaRepository.findById(id)
+                .orElseThrow(() -> new NinjaNaoEncontradoException(id));
+
+        ninjaExistente.setNome(ninjaAtualizado.getNome());
+        // repita para os demais campos do seu NinjaModel (nivel, especialidade, etc.)
+
+        return ninjaRepository.save(ninjaExistente);
     }
 }
 
